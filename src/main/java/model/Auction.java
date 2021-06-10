@@ -17,6 +17,10 @@ public class Auction {
         this.description = description;
     }
 
+    public Auction(){
+
+    }
+
     public int getId() {
         return id;
     }

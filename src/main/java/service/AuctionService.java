@@ -1,22 +1,28 @@
 package service;
 
+import database.AuctionDatabase;
 import model.Auction;
 
 public class AuctionService {
-    //TODO
+    private AuctionDatabase auctionDatabase;
+
+    public AuctionService(){
+        this.auctionDatabase = new AuctionDatabase();
+    }
+
     public void createAuction(Auction auction){
-
+        auctionDatabase.createAuction(auction);
     }
-    //TODO
+
     public Auction getAuction(int id){
-
+        return auctionDatabase.getAuctionById(id);
     }
-    //TODO
+
     public void updateAuction(Auction auction){
-
+        auctionDatabase.updateAuction(auction);
     }
-    //TODO
-    public void deleteAuction(int id){
 
+    public void deleteAuction(int id){
+        auctionDatabase.deleteAuction(id);
     }
 }
