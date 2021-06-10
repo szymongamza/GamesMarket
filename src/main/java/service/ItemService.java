@@ -1,28 +1,34 @@
 package service;
 
+import database.ItemDatabase;
 import model.Item;
 
 import java.util.List;
 
 public class ItemService {
-    //TODO
+    private ItemDatabase itemDatabase;
+
+    public ItemService(){
+        this.itemDatabase = new ItemDatabase();
+    }
+
     public void createItem(Item item){
-
+        itemDatabase.createItem(item);
     }
-    //TODO
+
     public Item getItem(int id){
-
+        return itemDatabase.getItemById(id);
     }
-    //TODO
+
     public void updateItem(Item item){
-
+        itemDatabase.updateItem(item);
     }
-    //TODO
+
     public void deleteItem(int id){
-
+        itemDatabase.deleteItem(id);
     }
-    //TODO
-    public List<Item> searchItems(String name){
 
+    public List<Item> searchItems(String data){
+        return itemDatabase.searchItems(data);
     }
 }

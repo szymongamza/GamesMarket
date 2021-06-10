@@ -20,6 +20,18 @@ public class ItemDatabase {
         return outputItem;
     }
 
+    public void updateItem(Item item){
+        for(int i=0; i<itemList.size(); i++){
+            if(itemList.get(i).getId() == item.getId()) itemList.set(i, item);
+        }
+    }
+
+    public void deleteItem(int id){
+        for (int i=0; i<itemList.size(); i++){
+            if(itemList.get(i).getId() == id) itemList.remove(i);
+        }
+    }
+
     public List<Item> searchItemsByName(String name){
         List<Item> outputList = new ArrayList<>();
         for (Item item : itemList){
