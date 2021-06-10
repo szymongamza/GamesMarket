@@ -17,6 +17,6 @@ public class AuctionService {
     }
     //TODO
     public void deleteAuction(int id){
-        
+
     }
 }
