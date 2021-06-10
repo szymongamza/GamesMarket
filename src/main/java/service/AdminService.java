@@ -2,6 +2,7 @@ package service;
 
 import database.UserDatabase;
 import model.Admin;
+import model.User;
 
 public class AdminService {
     private UserDatabase userDatabase;
@@ -24,5 +25,9 @@ public class AdminService {
 
     public void deleteAdmin(int id){
         userDatabase.deleteUser(id);
+    }
+
+    public User getAdminByEmail(String email){
+        return userDatabase.getUserByEmail(email);
     }
 }

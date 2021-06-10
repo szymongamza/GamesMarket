@@ -2,10 +2,15 @@ package database;
 
 import model.Auction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AuctionDatabase {
     private static List<Auction> auctionList;
+
+    public AuctionDatabase(){
+        if (auctionList == null) auctionList = new ArrayList<>();
+    }
 
     public void createAuction(Auction auction){
         auctionList.add(auction);

@@ -10,6 +10,14 @@ public class Customer extends User{
     private Cart cart;
     private Address address;
 
+    public Customer(int id, String email, String password, String firstName, String lastName, String telephone, Address address){
+        super(id, email, password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.telephone = telephone;
+        this.address = address;
+    }
+
     public Customer(){
         
     }

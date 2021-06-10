@@ -9,6 +9,12 @@ public class User {
     private List<Auction> auctions;
     private boolean isLogged = false; //maybe different login solution (UI)?
 
+    public User(int id, String email, String password){
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
+
     public User(){
 
     }

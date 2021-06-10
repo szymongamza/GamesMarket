@@ -8,6 +8,10 @@ import java.util.List;
 public class UserDatabase {
     private static List<User> userList;
 
+    public UserDatabase(){
+        if (userList == null) userList = new ArrayList<>();
+    }
+
     public void createUser(User user){
         userList.add(user);
     }

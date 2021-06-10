@@ -1,6 +1,11 @@
 package controller;
 
+import model.Address;
+import model.Customer;
+import model.User;
 import service.*;
+
+import java.util.Random;
 
 public final class ApplicationController {
 
@@ -28,6 +33,43 @@ public final class ApplicationController {
             applicationControllerInstance = new ApplicationController();
         }
         return applicationControllerInstance;
+    }
+
+    public void register(String email, String password, String confirmPass, String firstName, String lastName, String telephone, Address address){
+        if (password.equals(confirmPass)){
+            if (!isUserWithEmailInDb(email)){
+                Customer newCustomer = new Customer(generateId(), email, password, firstName, lastName, telephone, address);
+                customerService.createCustomer(newCustomer);
+            }else{
+                System.out.println("Email already used");
+            }
+        }else{
+            System.out.println("Passwords are unmatched");
+        }
+    }
+
+    public void login(String email, String password){
+        if(isUserWithEmailInDb(email)){
+            if(customerService.getCustomerByEmail(email).getPassword().equals(password)){
+                System.out.println("Succesfully logged in");
+                //logged in logic
+                //todo
+            }else{
+                System.out.println("Incorrect password");
+            }
+        }
+    }
+
+    private boolean isUserWithEmailInDb(String email){
+        User user = customerService.getCustomerByEmail(email);
+        if (user.getId() == 0) return false;
+        else return true;
+    }
+
+    //placeholder utility
+    private int generateId(){
+        Random random = new Random();
+        return random.nextInt(100) + 1;
     }
 
 }

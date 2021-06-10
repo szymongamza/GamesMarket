@@ -1,12 +1,16 @@
 package database;
 
-import model.Item;
 import model.Order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDatabase {
     private static List<Order> orderList;
+
+    public OrderDatabase(){
+        if (orderList == null) orderList = new ArrayList<>();
+    }
 
     public void createOrder(Order order){
         orderList.add(order);

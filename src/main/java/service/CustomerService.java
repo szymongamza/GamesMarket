@@ -29,8 +29,8 @@ public class CustomerService {
         userDatabase.deleteUser(id);
     }
 
-    public void getCustomerByEmail(String email){
-        userDatabase.getUserByEmail(email);
+    public User getCustomerByEmail(String email){
+        return userDatabase.getUserByEmail(email);
     }
 
     public List<User> searchCustomers(String data){

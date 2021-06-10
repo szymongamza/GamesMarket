@@ -8,6 +8,10 @@ import java.util.List;
 public class ItemDatabase {
     private static List<Item> itemList;
 
+    public ItemDatabase(){
+        if (itemList == null) itemList = new ArrayList<>();
+    }
+
     public void createItem(Item item){
         itemList.add(item);
     }
