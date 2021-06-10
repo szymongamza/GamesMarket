@@ -1,32 +1,39 @@
 package service;
 
+import database.UserDatabase;
 import model.Customer;
+import model.User;
 
 import java.util.List;
 
 public class CustomerService {
-    //TODO
+    private UserDatabase userDatabase;
+
+    public CustomerService(){
+        this.userDatabase = new UserDatabase();
+    }
+
     public void createCustomer(Customer customer){
-
+        userDatabase.createUser(customer);
     }
-    //TODO
+
     public Customer getCustomer(int id){
-
+        return (Customer) userDatabase.getUserById(id);
     }
-    //TODO
+
     public void updateCustomer(Customer customer){
-
+        userDatabase.updateUser(customer);
     }
-    //TODO
+
     public void deleteCustomer(int id){
-
+        userDatabase.deleteUser(id);
     }
-    //TODO
+
     public void getCustomerByEmail(String email){
-
+        userDatabase.getUserByEmail(email);
     }
-    //TODO
-    public List<Customer> searchCustomers(String data){
 
+    public List<User> searchCustomers(String data){
+        return userDatabase.searchUsers(data);
     }
 }

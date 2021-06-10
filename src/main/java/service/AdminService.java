@@ -7,7 +7,7 @@ public class AdminService {
     private UserDatabase userDatabase;
 
     public AdminService(){
-        userDatabase = new UserDatabase();
+        this.userDatabase = new UserDatabase();
     }
 
     public void createAdmin(Admin admin){
