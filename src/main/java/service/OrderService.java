@@ -1,18 +1,24 @@
 package service;
 
+import database.OrderDatabase;
 import model.Order;
 
 public class OrderService {
-    //TODO
+    private OrderDatabase orderDatabase;
+
+    public OrderService(){
+        this.orderDatabase = new OrderDatabase();
+    }
+
     public void createOrder(Order order){
-
+        orderDatabase.createOrder(order);
     }
-    //TODO
+
     public Order getOrder(int id){
-
+        return orderDatabase.getOrderById(id);
     }
-    //TODO
-    public void updateOrder(Order order){
 
+    public void updateOrder(Order order){
+        orderDatabase.updateOrder(order);
     }
 }
