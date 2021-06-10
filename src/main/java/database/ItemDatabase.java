@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDatabase {
-    private List<Item> itemList;
+    private static List<Item> itemList;
 
     public void createItem(Item item){
         itemList.add(item);

@@ -1,22 +1,28 @@
 package service;
 
+import database.UserDatabase;
 import model.Admin;
 
 public class AdminService {
-    //TODO
+    private UserDatabase userDatabase;
+
+    public AdminService(){
+        userDatabase = new UserDatabase();
+    }
+
     public void createAdmin(Admin admin){
-
+        userDatabase.createUser(admin);
     }
-    //TODO
+
     public Admin getAdmin(int id){
-
+        return (Admin) userDatabase.getUserById(id);
     }
-    //TODO
+
     public void updateAdmin(Admin admin){
-
+        userDatabase.updateUser(admin);
     }
-    //TODO
-    public void deleteAdmin(int id){
 
+    public void deleteAdmin(int id){
+        userDatabase.deleteUser(id);
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDatabase {
-    private List<User> userList;
+    private static List<User> userList;
 
     public void createUser(User user){
         userList.add(user);
@@ -23,6 +23,14 @@ public class UserDatabase {
         for (int i=0; i<userList.size(); i++){
             if(userList.get(i).getId() == id) userList.remove(i);
         }
+    }
+
+    public User getUserById(int id){
+        User outputUser = new User();
+        for(User user : userList){
+            if (user.getId() == id) outputUser = user;
+        }
+        return outputUser;
     }
 
     public User getUserByEmail(String email){

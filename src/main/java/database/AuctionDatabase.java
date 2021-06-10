@@ -5,7 +5,7 @@ import model.Auction;
 import java.util.List;
 
 public class AuctionDatabase {
-    private List<Auction> auctionList;
+    private static List<Auction> auctionList;
 
     public void createAuction(Auction auction){
         auctionList.add(auction);
