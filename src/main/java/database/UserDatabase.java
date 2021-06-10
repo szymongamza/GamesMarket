@@ -5,7 +5,7 @@ import model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDataBase {
+public class UserDatabase {
     private List<User> userList;
 
     public void createUser(User user){
