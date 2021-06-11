@@ -74,6 +74,8 @@ public class UI {
             case "2":
                 showAuctionMenu();
                 break;
+            case "3":
+                this.loggedUser = new User();
             default:
                 System.out.println("Elo Ziom, zapraszamy ponownie");
                 break;
@@ -89,31 +91,34 @@ public class UI {
 
     private void showAuctionMenu() {
 
-        System.out.println("1 - dodaj aukcję");
-        System.out.println("2 - usuń aukcję");
-        System.out.println("3 - edytuj aukcję");
-        System.out.println("4 - wroc");
+        boolean isRunning = true;
 
-        String input = scanner.nextLine();
+        while(isRunning) {
 
-        switch (input) {
-            case "1":
-                Auction auction = fillAuctionForm();
-                ApplicationController.getInstance().addAuction(
-                        auction);
-                break;
-            case "2":
-                System.out.println("Podaj id aukcji do usuniecia");
-                ApplicationController.getInstance().deleteAuction(scanner.nextInt());
-                break;
-            case "3":
-                System.out.println("Podaj id aukcji do edycji");
-                ApplicationController.getInstance().
-                //TODO
-                break;
-            default:
-                showCustomerMenu();
+            System.out.println("1 - dodaj aukcję");
+            System.out.println("2 - usuń aukcję");
+            System.out.println("3 - edytuj aukcję");
+            System.out.println("4 - wyjdz");
+
+            String input = scanner.nextLine();
+            switch (input) {
+                case "1":
+                    Auction auction = fillAuctionForm();
+                    ApplicationController.getInstance().addAuction(auction);
+                    break;
+                case "2":
+                    System.out.println("Podaj id aukcji do usuniecia");
+                    ApplicationController.getInstance().deleteAuction(scanner.nextInt());
+                    break;
+                case "3":
+                    System.out.println("Podaj id aukcji do edycji");
+                    ApplicationController.getInstance().getAuction(scanner.nextInt());
+                    break;
+                case "4":
+                    showCustomerMenu();
+            }
         }
+
     }
 
     public Auction fillAuctionForm(){

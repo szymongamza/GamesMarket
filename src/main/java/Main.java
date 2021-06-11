@@ -7,8 +7,8 @@ public class Main {
         ApplicationController.getInstance();
         UI userInterface = new UI();
 
-//        userInterface.showBasicMenu();
+        userInterface.showBasicMenu();
 //        userInterface.fillItemForm();
-        userInterface.fillAuctionForm();
+//        userInterface.fillAuctionForm();
     }
 }
