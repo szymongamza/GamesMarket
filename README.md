@@ -9,3 +9,4 @@ Project for studies, where we learn how to implement solution for client in grou
 ![Alt text](/Screenshots/Classes.PNG?raw=true "UML")
 #4 STAGE: Sequence Diagrams
 ![Alt text](/Screenshots/Sequence_Diagram.PNG?raw=true "UML")
+#5 STAGE: Implementation
