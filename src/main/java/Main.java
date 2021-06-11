@@ -7,6 +7,6 @@ public class Main {
         ApplicationController.getInstance();
         UI userInterface = new UI();
 
-        userInterface.showbasicMenu();
+        userInterface.showBasicMenu();
     }
 }

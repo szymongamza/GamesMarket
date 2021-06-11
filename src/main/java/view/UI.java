@@ -1,5 +1,6 @@
 package view;
 
+import controller.ApplicationController;
 import model.Address;
 import model.Customer;
 import model.Item;
@@ -16,32 +17,50 @@ public class UI {
 
     public UI (){
         this.scanner = new Scanner(System.in);
+        this.loggedUser = new User();
     }
 
     public void showBasicMenu(){
 
-        System.out.println("Witaj w Games Market!");
-        System.out.println("Jeśli jesteś zarejestrowanym użytkownikiem, wybierz 1, jeśli nie masz konta i chcesz się zarejestrować wybierz 2");
-        System.out.println("1 - login");
-        System.out.println("2 - register");
-        String input = scanner.nextLine();
+        boolean isLogged = false;
 
-        switch (input){
-            case "1":
-                fillLoginForm();
-                break;
-            case "2":
-                fillRegistrationForm();
-                break;
-            default:
-                System.out.println("Elo Ziom, zapraszamy ponownie");
-                break;
+        System.out.println("Witaj w Games Market!");
+
+        while (loggedUser.getId() == 0){
+            System.out.println("Jeśli jesteś zarejestrowanym użytkownikiem, wybierz 1, jeśli nie masz konta i chcesz się zarejestrować wybierz 2");
+            System.out.println("1 - login");
+            System.out.println("2 - register");
+            String input = scanner.nextLine();
+            switch (input){
+                case "1":
+                    LoginForm loginForm = fillLoginForm();
+                    this.loggedUser = ApplicationController.getInstance().login(loginForm.getLogin(), loginForm.getPassword());
+
+                    if (loggedUser.getId() != 0) {
+                        showCustomerMenu();
+                    }
+
+                    break;
+                case "2":
+                    RegisterForm registerForm = fillRegistrationForm();
+                    ApplicationController.getInstance().register(
+                            registerForm.getCustomer().getEmail(),
+                            registerForm.getCustomer().getPassword(),
+                            registerForm.getConfirmPassword(),
+                            registerForm.getCustomer().getFirstName(),
+                            registerForm.getCustomer().getLastName(),
+                            registerForm.getCustomer().getTelephone(),
+                            registerForm.getAddress());
+                    break;
+                default:
+                    System.out.println("Elo ZIomek, zły input");
+                    break;
+            }
         }
     }
 
     public void showCustomerMenu(){
 
-        System.out.println("Witaj!");
         System.out.println("1 - szukaj gier");
         System.out.println("2 - dodaj aukcję");
         System.out.println("2 - wyloguj się");
@@ -49,15 +68,22 @@ public class UI {
 
         switch (input){
             case "1":
-                fillLoginForm();
+                showGameMenu();
                 break;
             case "2":
-                fillRegistrationForm();
+//                showAuctionMenu();
                 break;
             default:
                 System.out.println("Elo Ziom, zapraszamy ponownie");
                 break;
         }
+    }
+
+    private void showGameMenu() {
+        System.out.println("Wpisz szukaną frazę");
+        System.out.println(ApplicationController.getInstance().searchItems(scanner.nextLine()));
+        System.out.println("Wybierz id gry, którą chcesz dodać do koszyka");
+//        ApplicationController.getInstance().
     }
 
     public RegisterForm fillRegistrationForm(){
@@ -109,6 +135,49 @@ public class UI {
         System.out.println("-Nintendo");
         System.out.println("-Xbox");
 
+        while (!isCorrect) {
+            switch (scanner.nextLine()) {
+                case "Playstation":
+                    item.setPlatform(Platform.PLaystation);
+                    isCorrect = true;
+                    break;
+                case "Xbox":
+                    item.setPlatform(Platform.Xbox);
+                    isCorrect = true;
+                    break;
+                case "PC":
+                    item.setPlatform(Platform.PC);
+                    isCorrect = true;
+                    break;
+                case "Nintendo":
+                    item.setPlatform(Platform.Nintendo);
+                    isCorrect = true;
+                    break;
+                default:
+                    System.out.println("Nie ma takiej platformy");
+                    isCorrect = false;
+                    break;
+            }
+        }
+
+        System.out.println("Czy gra jest nowa?");
+
+        while (!isCorrect) {
+            switch (scanner.nextLine()) {
+                case "tak":
+                    item.setNew(true);
+                    isCorrect = true;
+                    break;
+                case "nie":
+                    item.setNew(false);
+                    isCorrect = true;
+                    break;
+                default:
+                    System.out.println("Odpowiedz tak lub nie");
+                    isCorrect = false;
+                    break;
+            }
+        }
         return item;
     }
 

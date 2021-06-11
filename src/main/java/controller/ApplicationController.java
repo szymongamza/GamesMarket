@@ -2,9 +2,11 @@ package controller;
 
 import model.Address;
 import model.Customer;
+import model.Item;
 import model.User;
 import service.*;
 
+import java.util.List;
 import java.util.Random;
 
 public final class ApplicationController {
@@ -61,6 +63,14 @@ public final class ApplicationController {
             }
         }
         return outputUser;
+    }
+
+    public List<Item> searchItems(String name) {
+        return itemService.searchItems(name);
+    }
+
+    public void addItemToCart(String id) {
+
     }
 
     private boolean isUserWithEmailInDb(String email){

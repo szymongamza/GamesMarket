@@ -7,12 +7,14 @@ public class User {
     private String email;
     private String password;
     private List<Auction> auctions;
+    private Cart cart;
     private boolean isLogged = false; //maybe different login solution (UI)?
 
     public User(int id, String email, String password){
         this.id = id;
         this.email = email;
         this.password = password;
+        this.cart = new Cart();
     }
 
     public User(){
