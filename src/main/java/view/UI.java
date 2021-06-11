@@ -62,8 +62,8 @@ public class UI {
     public void showCustomerMenu(){
 
         System.out.println("1 - szukaj gier");
-        System.out.println("2 - dodaj aukcję");
-        System.out.println("2 - wyloguj się");
+        System.out.println("2 - menu aukcji");
+        System.out.println("3 - wyloguj się");
         String input = scanner.nextLine();
 
         switch (input){
@@ -71,7 +71,7 @@ public class UI {
                 showGameMenu();
                 break;
             case "2":
-//                showAuctionMenu();
+                showAuctionMenu();
                 break;
             default:
                 System.out.println("Elo Ziom, zapraszamy ponownie");
@@ -81,9 +81,44 @@ public class UI {
 
     private void showGameMenu() {
         System.out.println("Wpisz szukaną frazę");
-        System.out.println(ApplicationController.getInstance().searchItems(scanner.nextLine()));
+        System.out.println(ApplicationController.getInstance().searchItemsByName(scanner.nextLine()));
         System.out.println("Wybierz id gry, którą chcesz dodać do koszyka");
 //        ApplicationController.getInstance().
+    }
+
+    private void showAuctionMenu() {
+
+        System.out.println("1 - dodaj aukcję");
+        System.out.println("2 - usuń aukcję");
+        System.out.println("3 - edytuj aukcję");
+        System.out.println("4 - wroc");
+
+        String input = scanner.nextLine();
+
+        switch (input) {
+            case "1":
+                fillAuctionForm();
+                //TODO
+                break;
+            case "2":
+                System.out.println("Podaj id aukcji do usuniecia");
+                //TODO
+                break;
+            case "3":
+                System.out.println("Podaj id aukcji do edycji");
+                //TODO
+                break;
+            default:
+                showCustomerMenu();
+        }
+    }
+
+    public AuctionForm fillAuctionForm(){
+        AuctionForm auctionForm = new AuctionForm();
+        auctionForm.getAuction().setItem(fillItemForm());
+        System.out.println("Podaj opis aukcji");
+        auctionForm.getAuction().setDescription(scanner.nextLine());
+        return auctionForm;
     }
 
     public RegisterForm fillRegistrationForm(){
@@ -130,37 +165,35 @@ public class UI {
         System.out.println("Podaj cene w formacie zzgg");
         item.setPrice(scanner.nextInt());
         System.out.println("Wybierz platforme");
-        System.out.println("-PLaystation");
-        System.out.println("-PC");
-        System.out.println("-Nintendo");
-        System.out.println("-Xbox");
+        System.out.println("1 - PLaystation");
+        System.out.println("2 - PC");
+        System.out.println("3 - Nintendo");
+        System.out.println("4 - Xbox");
 
         while (!isCorrect) {
-            switch (scanner.nextLine()) {
-                case "Playstation":
+             String input = scanner.nextLine();
+            switch (input) {
+                case "1":
                     item.setPlatform(Platform.PLaystation);
                     isCorrect = true;
                     break;
-                case "Xbox":
-                    item.setPlatform(Platform.Xbox);
-                    isCorrect = true;
-                    break;
-                case "PC":
+                case "2":
                     item.setPlatform(Platform.PC);
                     isCorrect = true;
                     break;
-                case "Nintendo":
+                case "3":
                     item.setPlatform(Platform.Nintendo);
                     isCorrect = true;
                     break;
-                default:
-                    System.out.println("Nie ma takiej platformy");
-                    isCorrect = false;
+                case "4":
+                    item.setPlatform(Platform.Xbox);
+                    isCorrect = true;
                     break;
             }
         }
 
         System.out.println("Czy gra jest nowa?");
+        isCorrect = false;
 
         while (!isCorrect) {
             switch (scanner.nextLine()) {
@@ -177,6 +210,8 @@ public class UI {
                     isCorrect = false;
                     break;
             }
+
+            System.out.println(item.getPlatform());
         }
         return item;
     }

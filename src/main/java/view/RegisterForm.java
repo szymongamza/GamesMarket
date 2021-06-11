@@ -5,9 +5,9 @@ import model.Customer;
 
 public class RegisterForm {
 
-    Customer customer = new Customer();
+    private Customer customer = new Customer();
 
-    Address address = new Address();
+    private Address address = new Address();
 
     private String confirmPassword;
 
