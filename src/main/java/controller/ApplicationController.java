@@ -48,16 +48,19 @@ public final class ApplicationController {
         }
     }
 
-    public void login(String email, String password){
+    public User login(String email, String password){
+
+        User outputUser = new User();
+
         if(isUserWithEmailInDb(email)){
             if(customerService.getCustomerByEmail(email).getPassword().equals(password)){
                 System.out.println("Succesfully logged in");
-                //logged in logic
-                //todo
+                outputUser = customerService.getCustomerByEmail(email);
             }else{
                 System.out.println("Incorrect password");
             }
         }
+        return outputUser;
     }
 
     private boolean isUserWithEmailInDb(String email){

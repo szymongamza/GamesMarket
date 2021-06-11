@@ -17,6 +17,10 @@ public class Address {
         this.buildingNumber = buildingNumber;
     }
 
+    public Address () {
+
+    }
+
 
     public int getId() {
         return id;
