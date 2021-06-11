@@ -90,6 +90,18 @@ public final class ApplicationController {
         auctionService.deleteAuction(id);
     }
 
+    public void addOrder(Order order){
+        orderService.createOrder(order);
+    }
+
+    public void getOrder(int id){
+        orderService.getOrder(id);
+    }
+
+    public void updateOrder(Order order){
+        orderService.updateOrder(order);
+    }
+
     public void createUserOrder(int id, Order order){
         Customer customer = customerService.getCustomer(id);
         customer.addOrder(order);
