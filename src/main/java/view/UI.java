@@ -2,6 +2,7 @@ package view;
 
 import controller.ApplicationController;
 import model.Address;
+import model.Auction;
 import model.Customer;
 import model.Item;
 import model.Platform;
@@ -97,8 +98,10 @@ public class UI {
 
         switch (input) {
             case "1":
-                fillAuctionForm();
-                //TODO
+                Auction auction = fillAuctionForm();
+                auction.setItem(auction.getItem());
+                ApplicationController.getInstance().addAuction(
+                        auction);
                 break;
             case "2":
                 System.out.println("Podaj id aukcji do usuniecia");
@@ -113,11 +116,11 @@ public class UI {
         }
     }
 
-    public AuctionForm fillAuctionForm(){
-        AuctionForm auctionForm = new AuctionForm();
-        auctionForm.getAuction().setItem(fillItemForm());
+    public Auction fillAuctionForm(){
+        Auction auctionForm = new Auction();
+        auctionForm.setItem(fillItemForm());
         System.out.println("Podaj opis aukcji");
-        auctionForm.getAuction().setDescription(scanner.nextLine());
+        auctionForm.setDescription(scanner.nextLine());
         return auctionForm;
     }
 
