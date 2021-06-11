@@ -99,16 +99,16 @@ public class UI {
         switch (input) {
             case "1":
                 Auction auction = fillAuctionForm();
-                auction.setItem(auction.getItem());
                 ApplicationController.getInstance().addAuction(
                         auction);
                 break;
             case "2":
                 System.out.println("Podaj id aukcji do usuniecia");
-                //TODO
+                ApplicationController.getInstance().deleteAuction(scanner.nextInt());
                 break;
             case "3":
                 System.out.println("Podaj id aukcji do edycji");
+                ApplicationController.getInstance().
                 //TODO
                 break;
             default:
