@@ -84,6 +84,7 @@ public final class ApplicationController {
     public void addAuction(Auction auction){
         auction.setId(generateId());
         auctionService.createAuction(auction);
+        System.out.println("Item added to database");
     }
 
     public void deleteAuction(int id){
