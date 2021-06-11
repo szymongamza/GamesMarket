@@ -3,7 +3,6 @@ package controller;
 import model.*;
 import service.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -70,7 +69,7 @@ public final class ApplicationController {
     //placeholder utility
     private int generateId(){
         Random random = new Random();
-        return random.nextInt(100) + 1;
+        return random.nextInt(10000) + 1;
     }
 
     public void addItem(Item item){
@@ -80,6 +79,15 @@ public final class ApplicationController {
 
     public List<Item> searchItemsByName(String name){
         return itemService.searchItems(name);
+    }
+
+    public void addAuction(Auction auction){
+        auction.setId(generateId());
+        auctionService.createAuction(auction);
+    }
+
+    public void deleteAuction(int id){
+        auctionService.deleteAuction(id);
     }
 
     public void createUserOrder(int id, Order order){
