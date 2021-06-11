@@ -1,10 +1,10 @@
 package controller;
 
-import model.Address;
-import model.Customer;
-import model.User;
+import model.*;
 import service.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public final class ApplicationController {
@@ -48,16 +48,17 @@ public final class ApplicationController {
         }
     }
 
-    public void login(String email, String password){
+    public User login(String email, String password){
+        User outputUser = new User();
         if(isUserWithEmailInDb(email)){
             if(customerService.getCustomerByEmail(email).getPassword().equals(password)){
                 System.out.println("Succesfully logged in");
-                //logged in logic
-                //todo
+                outputUser = customerService.getCustomerByEmail(email);
             }else{
                 System.out.println("Incorrect password");
             }
         }
+        return outputUser;
     }
 
     private boolean isUserWithEmailInDb(String email){
@@ -72,4 +73,30 @@ public final class ApplicationController {
         return random.nextInt(100) + 1;
     }
 
+    public void addItem(Item item){
+        itemService.createItem(item);
+        System.out.println("Item added to database");
+    }
+
+    public List<Item> searchItemsByName(String name){
+        return itemService.searchItems(name);
+    }
+
+    public void createUserOrder(int id, Order order){
+        Customer customer = customerService.getCustomer(id);
+        customer.addOrder(order);
+        customerService.updateCustomer(customer);
+    }
+
+    public List<User> searchCustomers(String data){
+        return customerService.searchCustomers(data);
+    }
+
+    public void editCustomer(Customer customer){
+        customerService.updateCustomer(customer);
+    }
+
+    public void deleteCustomer(int id){
+        customerService.deleteCustomer(id);
+    }
 }

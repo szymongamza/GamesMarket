@@ -54,6 +54,10 @@ public class Customer extends User{
         this.orders = orders;
     }
 
+    public void addOrder(Order order){
+        this.orders.add(order);
+    }
+
     public Cart getCart() {
         return cart;
     }
