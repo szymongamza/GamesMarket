@@ -3,7 +3,6 @@ package view;
 import controller.ApplicationController;
 import model.Address;
 import model.Auction;
-import model.Customer;
 import model.Item;
 import model.Platform;
 import model.User;
