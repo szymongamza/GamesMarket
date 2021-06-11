@@ -73,6 +73,7 @@ public final class ApplicationController {
     }
 
     public void addItem(Item item){
+        item.setId(generateId());
         itemService.createItem(item);
         System.out.println("Item added to database");
     }
