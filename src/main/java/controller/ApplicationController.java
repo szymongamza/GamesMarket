@@ -82,6 +82,10 @@ public final class ApplicationController {
         return itemService.searchItems(name);
     }
 
+    public Auction getAuction(int id){
+        return auctionService.getAuction(id);
+    }
+
     public void addAuction(Auction auction){
         auction.setId(generateId());
         auction.getItem().setId(generateId());
